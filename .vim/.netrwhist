@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/lars/documents/bachelorarbeit/software/lars/comtest'
+let g:netrw_dirhist_2='/home/lars/las-vegas/las-vegas-reconstruction/src/lib/io'
+let g:netrw_dirhist_3='/home/lars/.config/mc'
+let g:netrw_dirhist_4='/home/lars/.opera/mail/sync'

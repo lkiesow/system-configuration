@@ -1,0 +1,32 @@
+# Write your default config options here!
+heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
+#cache=2500
+#cache-min=75
+
+[protocol.dvd]
+profile-desc="profile for dvd:// streams"
+vf=pp=hb/vb/dr/al/fd
+alang=de,en
+dvd-device=/dev/dvd1
+nosub=yes
+ass=yes
+embeddedfonts=yes
+ass-border-color=00000000
+subfont-outline=4
+af=volume=20.0:0
+
+[protocol.dvdnav]
+profile-desc="profile for dvdnav:// streams"
+profile=protocol.dvd
+mouse-movements=yes
+nocache=yes
+
+
+[extension.mp3]
+profile-desc="profile for .mp3 files"
+cache=500
+
+[protocol.http]
+profile-desc="profile for http:// streams"
+cache-min=50
+cache=500
