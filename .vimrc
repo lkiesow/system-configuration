@@ -103,10 +103,10 @@ map <F9> :w<CR> <Plug>Tex_Compile <Plug>Tex_View <ESC>:!sleep 1<CR><CR>
 nmap <silent>  ;t :TlistUpdate<CR>:TlistToggle<CR>
 nmap <silent> ;;t :TlistUpdate<CR>
 
-nmap <silent>  ;l :!pdflatex %<CR>
-nmap <silent> ;;l :!pdflatex % && evince %:r.pdf<CR>
-nmap <silent>  ;l :!xelatex %<CR>
-nmap <silent> ;;l :!xelatex % && evince %:r.pdf<CR>
+nmap <silent>  ;l :!pdflatex "%"<CR>
+nmap <silent> ;;l :!pdflatex "%" && evince "%:r.pdf"<CR>
+nmap <silent>  ;x :!xelatex %<CR>
+nmap <silent> ;;x :!xelatex % && evince %:r.pdf<CR>
 
 " Map paste mode to F2
 nnoremap <F2> :set invpaste paste?<CR>
