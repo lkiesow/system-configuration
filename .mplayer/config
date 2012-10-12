@@ -1,19 +1,38 @@
 # Write your default config options here!
 heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
-#cache=2500
-#cache-min=75
-
-[protocol.dvd]
-profile-desc="profile for dvd:// streams"
-vf=pp=hb/vb/dr/al/fd
-alang=de,en
-dvd-device=/dev/dvd1
-nosub=yes
+# We have enough memory so use it:
+cache=100000
+cache-min=75
 ass=yes
 embeddedfonts=yes
 ass-border-color=00000000
 subfont-outline=4
+# We want to be able to take screenshots with s/S:
+vf=screenshot
+vo=xv,x11
+#af=volume=10.0:0
+
+
+[protocol.dvd]
+profile-desc="profile for dvd:// streams"
+#vf=pp=hb/vb/dr/al/fd
+# Set preferred audio language to German and if that is not available to
+# English:
+alang=de,en
+# Set path of default DVD device:
+dvd-device=/dev/dvd1
+# Disable subtitles as default (can be turned on later)
+nosub=yes
+# Turn on SSA/ASS subtitle rendering:
+ass=yes
+# Enables extraction of Matroska:
+embeddedfonts=yes
+# Set OSD border color:
+ass-border-color=00000000
+subfont-outline=4
+# Increase volume for DVD playback:
 af=volume=20.0:0
+
 
 [protocol.dvdnav]
 profile-desc="profile for dvdnav:// streams"
