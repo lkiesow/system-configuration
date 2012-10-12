@@ -12,7 +12,7 @@ filetype on
 filetype indent on
 filetype detect
 
-set history=1000
+set history=10000
 set nu  " enable line numbers
 set showcmd  " show all commands
 
@@ -25,6 +25,10 @@ set nocompatible
 set tabstop=3
 set shiftwidth=3
 set softtabstop=3
+
+" break at word boundaries rather that in words
+set linebreak
+" break after 80 characters while typing
 
 autocmd BufNewFile,BufRead */las-vegas-reconstruction/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
 
@@ -112,5 +116,8 @@ nmap <silent> ;;x :!xelatex % && evince %:r.pdf<CR>
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+
+" toggle spell checker by <F3>
+nnoremap <F3> :set spell! spell?<CR>
 
 set mouse=a
