@@ -81,6 +81,11 @@ alias grep='grep --color'
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 
+# Pulse audio sink names
+PA_SINK_UA1G=:alsa_output.usb-Roland_UA-1G-00-UA1G.analog-stereo
+PA_SINK_HDMI=:alsa_output.pci-0000_01_00.1.hdmi-stereo
+PA_SINK_INTERNAL=:alsa_output.pci-0000_00_14.2.analog-stereo
+
 # remove all cr2 files for wich no jpg exists
 cleancr2() {
 	for i in *CR2
@@ -126,7 +131,7 @@ print_html() {
 	rm $tmp     
 }
 
-mnt() {
+function mnt() {
 	if [ -e "/dev/disk/by-label/$1" ]
 	then
 		sudo mkdir -p "/media/$1"
@@ -144,9 +149,12 @@ mnt() {
 		echo "No device with label »$1«"
 	fi
 }
-compctl -k "(`ls /dev/disk/by-label/`)" mnt
+function devicelabel() {
+	reply=(`ls /dev/disk/by-label/`)
+}
+compctl -K devicelabel mnt
 
-umnt() {
+function umnt() {
 	if [ -e "/dev/disk/by-label/$1" ]
 	then
 		sudo umount "/media/$1"
@@ -155,7 +163,10 @@ umnt() {
 		echo "No device with label »$1«"
 	fi
 }
-compctl -k "(`ls /media/`)" umnt
+function mountlabel() {
+	reply=(`ls /media/`)
+}
+compctl -K mountlabel umnt
 
 # stream various radio stations
 radio() {
