@@ -75,6 +75,9 @@ alias cls='clear'
 alias cd..='cd ..'
 alias vi='vim'
 alias excuse='telnet bofh.jeffballard.us 666 2&> /dev/null | grep "^Your excuse is:"'
+alias screencast1="ffmpeg -f alsa -ac 2 -i pulse -f x11grab -s 1600x900+0+0 -r 30 -i :0.0 -threads 1 "
+alias beamer_config='xrandr --output LVDS1 --mode 1024x768 --output VGA1 --mode 1024x768'
+alias beamer_config_2='xrandr --output LVDS1 --mode 1600x900 --output VGA1 --mode 1024x768 --right-of LVDS1'
 
 # colored grep by default
 alias grep='grep --color'
