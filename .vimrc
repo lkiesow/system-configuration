@@ -110,8 +110,9 @@ nmap <silent> ;;t :TlistUpdate<CR>
 " TeX specific stuff
 function! TexProject()
 	let firstline = getline(1)
+	let filepath  = expand('%:h')
 	if firstline =~ "^%texproject: ..*"
-		return substitute(firstline, "^%texproject: *", "", 1)
+		return substitute(firstline, "^%texproject: *", filepath.'/', 1)
 	endif
 	return "%"
 endfunction
