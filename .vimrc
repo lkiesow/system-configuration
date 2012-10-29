@@ -107,8 +107,18 @@ map <F9> :w<CR> <Plug>Tex_Compile <Plug>Tex_View <ESC>:!sleep 1<CR><CR>
 nmap <silent>  ;t :TlistUpdate<CR>:TlistToggle<CR>
 nmap <silent> ;;t :TlistUpdate<CR>
 
-nmap <silent>  ;l :!pdflatex "%"<CR>
-nmap <silent> ;;l :!pdflatex "%" && evince "%:r.pdf"<CR>
+" TeX specific stuff
+function! TexProject()
+	let firstline = getline(1)
+	if firstline =~ "^%texproject: ..*"
+		return substitute(firstline, "^%texproject: *", "", 1)
+	endif
+	return "%"
+endfunction
+"nmap <silent>  ;l :!pdflatex "%"<CR>
+"nmap <silent> ;;l :!pdflatex "%" && evince "%:r.pdf"<CR>
+nmap <silent>  ;l :exec '!pdflatex "'.TexProject().'"'<CR>
+nmap <silent> ;;l :exec '!pdflatex "'.TexProject().'" && evince "'.substitute(TexProject(),"\.tex$",".pdf",1).'"'<CR>
 nmap <silent>  ;x :!xelatex %<CR>
 nmap <silent> ;;x :!xelatex % && evince %:r.pdf<CR>
 
@@ -119,5 +129,7 @@ set showmode
 
 " toggle spell checker by <F3>
 nnoremap <F3> :set spell! spell?<CR>
+
+" toggle syntax highlighting with <F4>
 
 set mouse=a
