@@ -111,10 +111,10 @@ nmap <silent> ;;t :TlistUpdate<CR>
 function! TexProject()
 	let firstline = getline(1)
 	let filepath  = expand('%:h')
-	if firstline =~ "^%texproject: ..*"
+	if firstline =~ "^%texproject: *..*"
 		return substitute(firstline, "^%texproject: *", filepath.'/', 1)
 	endif
-	return "%"
+	return expand('%')
 endfunction
 "nmap <silent>  ;l :!pdflatex "%"<CR>
 "nmap <silent> ;;l :!pdflatex "%" && evince "%:r.pdf"<CR>
