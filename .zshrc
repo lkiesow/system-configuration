@@ -1,18 +1,17 @@
-PATH=/usr/local/texlive/2011/bin/x86_64-linux:$PATH:/sbin:/usr/sbin:/usr/local/sbin:/usr/X11R6/bin:/usr/local/bin:~/.bin
-#LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/lib:/lib64:/usr/lib:/usr/lib64:/usr/local/lib:/usr/local/lib64
-#export PATH
-#export LD_LIBRARY_PATH
-
 export SVN_EDITOR=vim
 export EDITOR=vim
-export BROWSER=/usr/bin/opera
+export BROWSER=surf
 
-MANPATH=/usr/local/share/man:/usr/share/man:/usr/local/texlive/2011/texmf/doc/man
+# Add /usr/local/texlive/2011/texmf/doc/man to MANPATH, if not dynamically determined.
+# Add /usr/local/texlive/2011/texmf/doc/info to INFOPATH.
+# Most importantly, add /usr/local/texlive/2011/bin/x86_64-linux to path
+
+PATH=/usr/local/texlive/2012/bin/x86_64-linux:$PATH:/sbin:/usr/sbin:/usr/local/sbin:/usr/X11R6/bin:/usr/local/bin:~/.bin
+export PATH
+MANPATH=/usr/local/share/man:/usr/share/man:/usr/local/texlive/2012/texmf/doc/man
 export MANPATH
-INFOPATH=/usr/local/texlive/2011/texmf/doc/info:$INFOPATH
+INFOPATH=/usr/local/texlive/2012/texmf/doc/info:$INFOPATH
 export INFOPATH
-# ignore mandriva system alias defined in /etc/profile.d/alias.sh
-IGNORE_SYSTEM_ALIASES=true
 
 # Get keys working
 (( ${+terminfo[kich1]} )) && bindkey "${terminfo[kich1]}" yank
@@ -22,25 +21,9 @@ IGNORE_SYSTEM_ALIASES=true
 (( ${+terminfo[khome]} )) && bindkey "${terminfo[khome]}" beginning-of-line
 (( ${+terminfo[kend]} ))  && bindkey "${terminfo[kend]}"  end-of-line
 
-# [[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-
-bindkey '^[[3~'   delete-char
-bindkey "^[OH"    beginning-of-line   # Pos1
-bindkey "^[OF"    end-of-line         # End
-#bindkey '[1;5D' emacs-backward-word # ctrl-left
-#bindkey '[1;5C' emacs-forward-word  # ctrl-right
-#bindkey '[1;5D' vi-backward-word # ctrl-left
-#bindkey '[1;5C' vi-forward-word  # ctrl-right
 bindkey '[1;5D' backward-word # ctrl-left
 bindkey '[1;5C' forward-word  # ctrl-right
-# screen
-# [1;5D -- ctrl-left, [1;5C -- ctrl-right
-# [1;3D -- alt-left,  [1;3C -- alt-right
-
-# Eingabe eines Kommandos und Drücken der Pfeil-nach-oben-Taste veranlasst
-# die Zsh, eine hostory-Suche zu starten.
-bindkey "^[[A"   up-line-or-search
-bindkey "^[[B" down-line-or-search
+bindkey '\e^?'    backward-delete-word
 
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[3~' delete-char
@@ -59,6 +42,10 @@ bindkey "\eOF" end-of-line
 setopt HIST_IGNORE_DUPS
 setopt APPEND_HISTORY
 export HISTFILE=${HOME}/.zsh_history
+
+# History search with up-/down-keys
+bindkey "^[[A"   up-line-or-search
+bindkey "^[[B" down-line-or-search
 
 # Some environment variables
 path=($path $HOME/bin)
@@ -109,29 +96,6 @@ svn() {
 	else
 		/usr/bin/svn $@
 	fi
-}
-#
-# set cpu frequency
-alias cpufreq.show_freq='cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_cur_freq'
-cpufreq() {
-	if [ $# -ne 1 ]; then
-		echo "Usage: $0 governor"
-	else
-		for i in /sys/devices/system/cpu/cpu[0-9]; do
-			sudo sh -c "echo $1 > $i/cpufreq/scaling_governor"; 
-			echo -n "Core $i is now set to "; 
-			cat $i/cpufreq/scaling_governor;
-		done
-	fi
-}
-compctl -k "(`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors`)" cpufreq
-
-
-print_html() {
-	tmp=`mktemp` 
-	w3m -dump -T text/html "$1" > $tmp
-	leafpad $tmp
-	rm $tmp     
 }
 
 function mnt() {

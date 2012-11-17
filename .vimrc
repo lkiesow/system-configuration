@@ -60,6 +60,14 @@ inoreabbrev lorem Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed 
 
 inoreabbrev /*** /*******************************************************************************<CR><CR><BS>*****************************************************************************
 
+if match($TERM, "screen")!=-1
+	set term=xterm
+	map OC <Right>
+	map OD <Left>
+	map [1;5C <S-Right>
+	map [1;5D <S-Left>
+endif
+
 function LigaturesSet()
 	%s/IJ/Ĳ/gce
 	%s/ij/ĳ/gce
