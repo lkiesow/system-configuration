@@ -2,6 +2,9 @@ export SVN_EDITOR=vim
 export EDITOR=vim
 export BROWSER=surf
 
+# But still use emacs-style zsh bindings
+bindkey -e
+
 # Add /usr/local/texlive/2011/texmf/doc/man to MANPATH, if not dynamically determined.
 # Add /usr/local/texlive/2011/texmf/doc/info to INFOPATH.
 # Most importantly, add /usr/local/texlive/2011/bin/x86_64-linux to path
@@ -49,8 +52,8 @@ bindkey "^[[B" down-line-or-search
 
 # Some environment variables
 path=($path $HOME/bin)
-export HISTSIZE=10000
-export SAVEHIST=10000
+export HISTSIZE=100000
+export SAVEHIST=100000
 export USER=$USERNAME
 export HOSTNAME=$HOST
 
