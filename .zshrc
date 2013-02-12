@@ -45,6 +45,21 @@ export SAVEHIST=100000
 export USER=$USERNAME
 export HOSTNAME=$HOST
 
+alias :q='exit'
+alias ls='ls --color=auto'
+alias ll='ls -h -l --color=auto'
+alias la='ls -h -l -a --color=auto'
+alias cls='clear'
+alias cd..='cd ..'
+alias vi='vimx'
+alias vim='vimx'
+alias excuse='telnet bofh.jeffballard.us 666 2&> /dev/null | grep "^Your excuse is:"'
+
+# colored grep by default
+alias grep='grep --color'
+alias egrep='egrep --color'
+alias fgrep='fgrep --color'
+
 # Pulse audio sink names
 PA_SINK_UA1G=:alsa_output.usb-Roland_UA-1G-00-UA1G.analog-stereo
 PA_SINK_HDMI=:alsa_output.pci-0000_01_00.1.hdmi-stereo
