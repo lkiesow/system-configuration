@@ -5,17 +5,6 @@ export BROWSER=surf
 # But still use emacs-style zsh bindings
 bindkey -e
 
-# Add /usr/local/texlive/2011/texmf/doc/man to MANPATH, if not dynamically determined.
-# Add /usr/local/texlive/2011/texmf/doc/info to INFOPATH.
-# Most importantly, add /usr/local/texlive/2011/bin/x86_64-linux to path
-
-PATH=/usr/local/texlive/2012/bin/x86_64-linux:$PATH:/sbin:/usr/sbin:/usr/local/sbin:/usr/X11R6/bin:/usr/local/bin:~/.bin
-export PATH
-MANPATH=/usr/local/share/man:/usr/share/man:/usr/local/texlive/2012/texmf/doc/man
-export MANPATH
-INFOPATH=/usr/local/texlive/2012/texmf/doc/info:$INFOPATH
-export INFOPATH
-
 # Get keys working
 (( ${+terminfo[kich1]} )) && bindkey "${terminfo[kich1]}" yank
 (( ${+terminfo[kdch1]} )) && bindkey "${terminfo[kdch1]}" delete-char
@@ -51,29 +40,10 @@ bindkey "^[[A"   up-line-or-search
 bindkey "^[[B" down-line-or-search
 
 # Some environment variables
-path=($path $HOME/bin)
 export HISTSIZE=100000
 export SAVEHIST=100000
 export USER=$USERNAME
 export HOSTNAME=$HOST
-
-alias :q='exit'
-alias ls='ls --color=auto'
-alias ll='ls -h -l --color=auto'
-alias la='ls -h -l -a --color=auto'
-alias cls='clear'
-alias cd..='cd ..'
-alias vi='vimx'
-alias vim='vimx'
-alias excuse='telnet bofh.jeffballard.us 666 2&> /dev/null | grep "^Your excuse is:"'
-alias screencast1="ffmpeg -f alsa -ac 2 -i pulse -f x11grab -s 1600x900+0+0 -r 30 -i :0.0 -threads 1 "
-alias beamer_config='xrandr --output LVDS1 --mode 1024x768 --output VGA1 --mode 1024x768'
-alias beamer_config_2='xrandr --output LVDS1 --mode 1600x900 --output VGA1 --mode 1024x768 --right-of LVDS1'
-
-# colored grep by default
-alias grep='grep --color'
-alias egrep='egrep --color'
-alias fgrep='fgrep --color'
 
 # Pulse audio sink names
 PA_SINK_UA1G=:alsa_output.usb-Roland_UA-1G-00-UA1G.analog-stereo
