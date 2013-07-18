@@ -69,23 +69,36 @@ if &ft == "spec"
 
 
 " TeX specific stuff
-elseif &ft == "tex" 
+endif
 
-	function! TexProject()
-		let firstline = getline(1)
-		let filepath  = expand('%:h')
-		if firstline =~ "^%texproject: *..*"
-			return substitute(firstline, "^%texproject: *", filepath.'/', 1)
-		endif
-		return expand('%')
-	endfunction
+
+" This for LaTeX files
+function! TexProject()
+	let firstline = getline(1)
+	let filepath  = expand('%:h')
+	if firstline =~ "^%texproject: *..*"
+		return substitute(firstline, "^%texproject: *", filepath.'/', 1)
+	endif
+	return expand('%')
+endfunction
+
+if &ft == "tex" || &ft == "plaintex"
 
 	nmap <silent>  ;l :exec '!pdflatex "'.TexProject().'"'<CR>
 	nmap <silent> ;;l :exec '!pdflatex "'.TexProject().'" && evince "'.substitute(TexProject(),"\.tex$",".pdf",1).'"'<CR>
 
-
-else 
 endif 
+
+" HTML to Android-Book (LaTeX) conversion
+function! Abc()
+	%s/<p>/\\Newpage/ge
+	%s/<\/p>//ge
+	%s/<em>/\\textit{/ge
+	%s/<\/em>/}/ge
+	%s/<hr[^>]*>/\\hrulefill/ge
+	%s/ //ge
+	%s/%/\\%/gce
+endfunction
 
 " Map paste mode to F2
 nnoremap <F2> :set invpaste paste?<CR>
