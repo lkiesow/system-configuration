@@ -30,7 +30,11 @@ set softtabstop=3
 set linebreak
 " break after 80 characters while typing
 
+" The Las Vegas Reconstruction Toolkit wants 4 spaces instaf of a tab
 autocmd BufNewFile,BufRead */las-vegas-reconstruction/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
+
+" And Matterhorn wants two spaces for each tab
+autocmd BufNewFile,BufRead */matterhorn-*/modules* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab
 
 " Besserer Bildschirmaufbau :
 set redraw
@@ -85,19 +89,20 @@ endfunction
 if &ft == "tex" || &ft == "plaintex"
 
 	nmap <silent>  ;l :exec '!pdflatex "'.TexProject().'"'<CR>
-	nmap <silent> ;;l :exec '!pdflatex "'.TexProject().'" && evince "'.substitute(TexProject(),"\.tex$",".pdf",1).'"'<CR>
+	nmap <silent> ;;l :exec '!pdflatex "'.TexProject().'" && xdg-open "'.substitute(TexProject(),"\.tex$",".pdf",1).'"'<CR>
 
 endif 
 
 " HTML to Android-Book (LaTeX) conversion
 function! Abc()
-	%s/<p>/\\Newpage/ge
+	%s/<p[^>]*>/\\Newpage/ge
 	%s/<\/p>//ge
 	%s/<em>/\\textit{/ge
 	%s/<\/em>/}/ge
 	%s/<hr[^>]*>/\\hrulefill/ge
 	%s/ //ge
 	%s/%/\\%/gce
+	%s/<br[^>]*>/ \\\\/g
 endfunction
 
 " Map paste mode to F2
