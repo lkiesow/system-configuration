@@ -91,6 +91,8 @@ if &ft == "tex" || &ft == "plaintex"
 	nmap <silent>  ;l :exec '!pdflatex "'.TexProject().'"'<CR>
 	nmap <silent> ;;l :exec '!pdflatex "'.TexProject().'" && xdg-open "'.substitute(TexProject(),"\.tex$",".pdf",1).'"'<CR>
 
+	nmap <silent> ;;e b"zdei\begin{}<ESC>"zPo\end{}<ESC>"zPO<TAB>
+
 endif 
 
 " HTML to Android-Book (LaTeX) conversion
