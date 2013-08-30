@@ -91,7 +91,15 @@ if &ft == "tex" || &ft == "plaintex"
 	nmap <silent>  ;l :exec '!pdflatex "'.TexProject().'"'<CR>
 	nmap <silent> ;;l :exec '!pdflatex "'.TexProject().'" && xdg-open "'.substitute(TexProject(),"\.tex$",".pdf",1).'"'<CR>
 
+	" Build environment construct based on the word under the cursor
 	nmap <silent> ;;e b"zdei\begin{}<ESC>"zPo\end{}<ESC>"zPO<TAB>
+
+	" Format (wrap) inner paragraph
+	nmap <silent> ;;f vipgw
+
+	" Support for taglist
+	let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
+	let tlist_make_settings  = 'make;m:makros;t:targets'
 
 endif 
 
