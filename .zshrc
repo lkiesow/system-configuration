@@ -66,28 +66,6 @@ PA_SINK_UA1G=:alsa_output.usb-Roland_UA-1G-00-UA1G.analog-stereo
 PA_SINK_HDMI=:alsa_output.pci-0000_01_00.1.hdmi-stereo
 PA_SINK_INTERNAL=:alsa_output.pci-0000_00_14.2.analog-stereo
 
-# remove all cr2 files for wich no jpg exists
-cleancr2() {
-	for i in *CR2
-	do
-		if [ -f "${i%CR2}JPG" ]
-		then
-		else
-			echo "Removing $i…"
-			rm "$i"
-		fi
-	done
-}
-
-# automatically pipe svn log into less
-svn() {
-	if [ $1 = 'log' ]; then
-		/usr/bin/svn $@ | less
-	else
-		/usr/bin/svn $@
-	fi
-}
-
 function mnt() {
 	if [ -e "/dev/disk/by-label/$1" ]
 	then
@@ -124,52 +102,6 @@ function mountlabel() {
 	reply=(`ls /media/`)
 }
 compctl -K mountlabel umnt
-
-# stream various radio stations
-radio() {
-	if [ $# -ne 1 ]; then
-		echo "Usage: $0 radiostation"
-	else
-		stream=''
-		if [ $1 = 'deutschlandfunk' ]; then
-			mplayer -volume 30 'http://dradio.ic.llnwd.net/stream/dradio_dlf_m_a' \
-				'http://dradio.ic.llnwd.net/stream/dradio_dlf_m_b'
-
-		elif [ $1 = 'deutschlandradio_kultur' ]; then
-			mplayer -playlist -volume 30 'http://dradio.ic.llnwd.net/stream/dradio_dkultur_m_a'
-
-		elif [ $1 = 'dradio_wissen' ]; then
-			mplayer -playlist -volume 30 'http://dradio.ic.llnwd.net/stream/dradio_dwissen_m_a'
-
-		elif [ $1 = 'wdr5' ]; then
-			mplayer -volume 30 -playlist 'http://www.wdr.de/wdrlive/media/wdr5.m3u'
-
-		elif [ $1 = 'ffn' ]; then
-			mplayer -playlist 'http://player.ffn.de/tunein_ffn.pls'
-
-		# sky.fm stream (we can generate the url from the given name)
-		elif [[ $1 == sky.fm.* ]]; then
-			echo `expr substr $1 8 99`
-			mplayer -volume 30 -playlist "http://www.sky.fm/mp3/`expr substr $1 8 99`.pls"
-		fi
-	fi
-}
-compctl -k '(
-		deutschlandfunk          deutschlandradio_kultur dradio_wissen
-		wdr5                     sky.fm.altrock          sky.fm.americansongbook
-		sky.fm.beatles           sky.fm.bebop            sky.fm.bossanova
-		sky.fm.christian         sky.fm.classical        sky.fm.classicalpianotrios
-		sky.fm.classicrap        sky.fm.classicrock      sky.fm.country
-		sky.fm.dancehits         sky.fm.datempolounge    sky.fm.dreamscapes
-		sky.fm.guitar            sky.fm.hit70s           sky.fm.indierock
-		sky.fm.jazzclassics      sky.fm.jpop             sky.fm.lovemusic
-		sky.fm.newage            sky.fm.oldies           sky.fm.pianojazz
-		sky.fm.poppunk           sky.fm.romantica        sky.fm.rootsreggae
-		sky.fm.salsa             sky.fm.smoothjazz       sky.fm.solopiano
-		sky.fm.soundtracks       sky.fm.the80s           sky.fm.tophits
-		sky.fm.uptemposmoothjazz sky.fm.urbanjamz        sky.fm.vocalsmoothjazz
-		sky.fm.world             ffn
-	)' radio
 
 # set advanced tab-completion
 autoload -U compinit
