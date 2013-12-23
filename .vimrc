@@ -1,82 +1,98 @@
-" Settings
-" --------
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Unicode
-set enc=utf-8
-set fenc=utf-8
-set termencoding=utf-8
+set nocompatible  " I do not care about Vi compatibility
+set history=10000 " Increase history size
+set nu            " Enable line numbers by default
+set showcmd       " Display commands on last screen line
+set ruler         " Show line and column number of cursor position
+set linebreak     " break at word boundaries rather that in words
+set showmode      " Show a message about the current mode
+set mouse=a       " Enable Mouse
 
-" Autoindent (Einrueckung wie Zeile davor)
-set autoindent
-filetype on
-filetype indent on
-filetype detect
 
-set history=10000
-set nu  " enable line numbers
-set showcmd  " show all commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Encoding
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Cursorposition an
-set ruler
+set enc=utf-8          " | Set default to Unicode
+set fenc=utf-8         " |
+set termencoding=utf-8 " |
 
-set nocompatible
 
-" Tabulator-Schrittweite. Hier: 2 Zeichen
-set tabstop=3
-set shiftwidth=3
-set softtabstop=3
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indentation
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" break at word boundaries rather that in words
-set linebreak
-" break after 80 characters while typing
+set autoindent     " | Autoindent according to file type
+filetype on        " |
+filetype indent on " |
+filetype detect    " |
 
-" The Las Vegas Reconstruction Toolkit wants 4 spaces instaf of a tab
+set tabstop=3      " Set the width of a tab to three spaces
+set shiftwidth=3   " Set the width of a shift (< and > keys) to one tab
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Project Specific Options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" The Las Vegas Reconstruction Toolkit wants four spaces instead of a tab
 autocmd BufNewFile,BufRead */las-vegas-reconstruction/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
 
-" And Matterhorn wants two spaces for each tab
-autocmd BufNewFile,BufRead */matterhorn-*/modules* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab
+" Opencast Matterhorn wants two spaces for each tab
+autocmd BufNewFile,BufRead */*matterhorn*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab
 
-" Besserer Bildschirmaufbau :
-set redraw
 
-" Zeigt den Arbeitsmodus :
-set showmode
-
-" Strg+Y (K-Mode, I-Mode): Error-Fenster öffnen
-map   :copen 3
-imap  :copen 3
-
-" Strg+X (K-Mode, I-Mode): Error-Fenster schließen
-map   :ccl
-imap  :ccli
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Bracket Matching
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set matchpairs+=<:>
 set showmatch
 set matchtime=3
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Insert Lorem Ipsum
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 command -nargs=1 Lorem r !curl -s 'http://loripsum.net/generate.php?p=<args>&l=long' | sed 's/<[^>]*> *//g'
 
-if match($TERM, "screen")!=-1
-	set term=xterm
-	map OC <Right>
-	map OD <Left>
-	map [1;5C <S-Right>
-	map [1;5D <S-Left>
-endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TagList Support
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Map ;t to open/close the TagList
 nmap <silent>  ;t :TlistUpdate<CR>:TlistToggle<CR>
+
+" Map ;;t to update the TagList
 nmap <silent> ;;t :TlistUpdate<CR>
 
-" This is for RPM specfiles
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RPM Build Related Functions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 if &ft == "spec" 
+	" Map ;l to the insertion of a log entry
 	nmap <silent>  ;l :r !echo "* $(date +'\%a \%b \%e \%Y') Lars Kiesow <lkiesow@uos.de> - $(sed -n 's/Version:[ \t]*//p' %)-$(sed -n 's/^Release:[ \t]*\(.*\)\%.*/\1/p' %)"o<ESC>O- 
-
-
-" TeX specific stuff
 endif
 
 
-" This for LaTeX files
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LaTeX Related Functions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""
+" Search for a TeX project specification in the first line of the current
+" file. If a project file is specified then return the main project file,
+" otherwise return the current file. This can be used for running TeX on the
+" from an included TeX file.
+" A project specification looks like this:
+"   %texproject: ../master-thesis.tex
+"""
 function! TexProject()
 	let firstline = getline(1)
 	let filepath  = expand('%:h')
@@ -86,10 +102,14 @@ function! TexProject()
 	return expand('%')
 endfunction
 
+
 if &ft == "tex" || &ft == "plaintex"
 
-	nmap <silent>  ;l :exec '!pdflatex "'.TexProject().'"'<CR>
-	nmap <silent> ;;l :exec '!pdflatex "'.TexProject().'" && xdg-open "'.substitute(TexProject(),"\.tex$",".pdf",1).'"'<CR>
+	" Map ;l to the execution of pdflatex on the current TeX project
+	nmap <silent>  ;l :exec '!pdflatex -shell-escape "'.TexProject().'"'<CR>
+
+	" Map ;;l to the execution of pdflatex and open the resulting pdf.
+	nmap <silent> ;;l :exec '!pdflatex -shell-escape "'.TexProject().'" && xdg-open "'.substitute(TexProject(),"\.tex$",".pdf",1).'"'<CR>
 
 	" Build environment construct based on the word under the cursor
 	nmap <silent> ;;e b"zdei\begin{}<ESC>"zPo\end{}<ESC>"zPO<TAB>
@@ -97,13 +117,20 @@ if &ft == "tex" || &ft == "plaintex"
 	" Format (wrap) inner paragraph
 	nmap <silent> ;;f vipgw
 
-	" Support for taglist
+	" LaTeX support for taglist
 	let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
 	let tlist_make_settings  = 'make;m:makros;t:targets'
 
 endif 
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " HTML to Android-Book (LaTeX) conversion
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" This is useful for the preparation of HTML files (especially HPMOR) for
+" typesetting ebooks for Android devices using LaTeX and the androidbook
+" class.
 function! Abc()
 	%s/<p[^>]*>/\\Newpage/ge
 	%s/<\/p>//ge
@@ -115,14 +142,55 @@ function! Abc()
 	%s/<br[^>]*>/ \\\\/g
 endfunction
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Paste Mode
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Map paste mode to F2
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 
-" toggle spell checker by <F3>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntax
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Enable syntax highlight by default
+syntax on
+let g:syntax = 1
+
+" Toggle syntax highlighting with <F4>
+map <F4> :call ToggleSyntax()<cr>
+function! ToggleSyntax()
+	try
+		if g:syntax_on
+			syntax off
+		endif
+	catch /.*/
+		syntax on
+	endtry
+endfunction
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Spelling
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Toggle spell checker by <F3>
 nnoremap <F3> :set spell! spell?<CR>
 
-" toggle syntax highlighting with <F4>
+" Specify colors for spell checking
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=202 term=underline cterm=underline ctermbg=8
+highlight clear SpellCap
+"highlight SpellCap term=underline cterm=underline
+highlight SpellCap term=underline cterm=underline ctermfg=202
+highlight clear SpellRare
+highlight SpellRare term=underline cterm=underline
+highlight clear SpellLocal
+highlight SpellLocal term=underline cterm=underline
 
-set mouse=a
+" Tell vim where to get dictionaries
+let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
