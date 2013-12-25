@@ -13,6 +13,15 @@ set mouse=a       " Enable Mouse
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set term=xterm-256color " | Vim may always use 256 colors as all modern
+set t_Co=256            " | terminals should support this. But it may be
+                        " | falsely detected because of screen or tmux.
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Encoding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -42,7 +51,7 @@ set shiftwidth=3   " Set the width of a shift (< and > keys) to one tab
 autocmd BufNewFile,BufRead */las-vegas-reconstruction/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
 
 " Opencast Matterhorn wants two spaces for each tab
-autocmd BufNewFile,BufRead */*matterhorn*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab
+autocmd BufNewFile,BufRead */*matterhorn*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab tags=/home/lars/dev/opencast-matterhorn/tags
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -185,7 +194,6 @@ nnoremap <F3> :set spell! spell?<CR>
 highlight clear SpellBad
 highlight SpellBad term=standout ctermfg=202 term=underline cterm=underline ctermbg=8
 highlight clear SpellCap
-"highlight SpellCap term=underline cterm=underline
 highlight SpellCap term=underline cterm=underline ctermfg=202
 highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
@@ -194,3 +202,11 @@ highlight SpellLocal term=underline cterm=underline
 
 " Tell vim where to get dictionaries
 let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Management
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+runtime bundle/vim-pathogen/pathogen.vim
+execute pathogen#infect()
