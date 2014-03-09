@@ -45,6 +45,11 @@ filetype detect    " |
 set tabstop=3      " Set the width of a tab to three spaces
 set shiftwidth=3   " Set the width of a shift (< and > keys) to one tab
 
+highlight ForbiddenWhitespace ctermbg=red  " Highlight trailing whitespace
+match ForbiddenWhitespace /\s\+$/
+" Do not highlight spaces at the end of line while typing on that line.
+" autocmd InsertEnter * match ForbiddenWhitespace /\s\+\%#\@<!$/
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Project Specific Options
