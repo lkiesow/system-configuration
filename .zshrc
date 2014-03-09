@@ -55,6 +55,7 @@ alias vi='TERM=xterm vimx'
 alias vim='TERM=xterm vimx'
 alias vimx='TERM=xterm vimx'
 alias excuse='telnet bofh.jeffballard.us 666 2&> /dev/null | grep "^Your excuse is:"'
+alias cal='cal -m'
 
 # colored grep by default
 alias grep='grep --color'
