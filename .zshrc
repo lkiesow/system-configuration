@@ -1,5 +1,6 @@
 export SVN_EDITOR=vim
 export EDITOR=vim
+type vimx &> /dev/null && export EDITOR=vimx
 export BROWSER=surf
 
 # But still use emacs-style zsh bindings
@@ -51,9 +52,9 @@ alias ll='ls -h -l --color=auto'
 alias la='ls -h -l -a --color=auto'
 alias cls='clear'
 alias cd..='cd ..'
-alias vi='TERM=xterm vimx'
-alias vim='TERM=xterm vimx'
-alias vimx='TERM=xterm vimx'
+alias vi="TERM=xterm ${EDITOR}"
+alias vim="TERM=xterm ${EDITOR}"
+type vimx &> /dev/null && alias vimx="TERM=xterm vimx"
 alias excuse='telnet bofh.jeffballard.us 666 2&> /dev/null | grep "^Your excuse is:"'
 alias cal='cal -m'
 
