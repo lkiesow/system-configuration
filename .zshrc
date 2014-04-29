@@ -145,4 +145,4 @@ vcs_info_wrapper() {
 RPROMPT=$'$(vcs_info_wrapper)'
 
 
-echo -e "Wilkommen \033[1mLars Kiesow\033[0m"
+echo -e "Hi \033[1m${USER}\033[0m"
