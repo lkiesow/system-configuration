@@ -6,9 +6,9 @@ then
 fi
 
 # extending path variables
-PATH=$PATH:`realpath /usr/local/texlive/20*/bin/x86_64-linux`:/sbin:/usr/sbin:/usr/local/sbin:/usr/X11R6/bin:/usr/local/bin:~/.bin
+PATH=`realpath /usr/local/texlive/20*/bin/x86_64-linux`:/sbin:/usr/sbin:~/.bin:$PATH
 export PATH
-MANPATH=`realpath /usr/local/texlive/20*/texmf/doc/man`:/usr/local/share/man:/usr/share/man
+MANPATH=`realpath /usr/local/texlive/20*/texmf/doc/man`:/usr/share/man
 export MANPATH
 INFOPATH=`realpath /usr/local/texlive/20*/texmf/doc/info`:$INFOPATH
 export INFOPATH
