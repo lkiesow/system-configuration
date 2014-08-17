@@ -211,6 +211,19 @@ highlight SpellLocal term=underline cterm=underline
 " Tell vim where to get dictionaries
 let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Special settings for vimdiff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" The diff highlighting often clashes with the dark background and the syntax
+" highlighting. Setting the dark background theme helps. Disabling syntax
+" highlighting helps more.
+if &diff
+	set background=dark
+	syn off
+endif
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Management
