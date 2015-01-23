@@ -63,48 +63,6 @@ alias grep='grep --color'
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 
-# Pulse audio sink names
-PA_SINK_UA1G=:alsa_output.usb-Roland_UA-1G-00-UA1G.analog-stereo
-PA_SINK_HDMI=:alsa_output.pci-0000_01_00.1.hdmi-stereo
-PA_SINK_INTERNAL=:alsa_output.pci-0000_00_14.2.analog-stereo
-
-function mnt() {
-	if [ -e "/dev/disk/by-label/$1" ]
-	then
-		sudo mkdir -p "/media/$1"
-		# Check if we have a NFTS filesystem
-		dv=`readlink -f "/dev/disk/by-label/$1"`
-		fs=`sudo file -s $dv | sed -n 's/.*NTFS.*/NTFS/p'`
-		if [[ $fs == 'NTFS' ]]
-		then
-			sudo mount "/dev/disk/by-label/$1" "/media/$1" \
-				-o rw,uid=`id -u`,gid=`id -g`,nls=utf8,umask=007,fmask=117
-		else
-			sudo mount "/dev/disk/by-label/$1" "/media/$1"
-		fi
-	else
-		echo "No device with label »$1«"
-	fi
-}
-function devicelabel() {
-	reply=(`ls /dev/disk/by-label/`)
-}
-compctl -K devicelabel mnt
-
-function umnt() {
-	if [ -e "/dev/disk/by-label/$1" ]
-	then
-		sudo umount "/media/$1"
-		sudo rmdir  "/media/$1"
-	else
-		echo "No device with label »$1«"
-	fi
-}
-function mountlabel() {
-	reply=(`ls /media/`)
-}
-compctl -K mountlabel umnt
-
 # set advanced tab-completion
 autoload -U compinit
 compinit
@@ -114,9 +72,10 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*:(gvim|vim):*' ignored-patterns '*.(pdf|jpg|png|bmp|ogg|mp3|avi|flv|mkv|rar|zip)'
 zstyle ':completion:*:(gvim|vim):*' file-sort access
 
-# completion for openbox
-compctl -k "(--help --version --replace --reconfigure --restart --config-file
-	--sm-disable --sync --debug --debug-focus --debug-xinerama --exit)" openbox
+# simple stupid completion for dnf
+compctl -k "(check-update clean distro-sync downgrade erase group help history
+	info install list makecache provides reinstall repolist repository-packages
+	search updateinfo upgrade upgrade-to)" dnf
 
 # evince completion
 zstyle ':completion:*:evince:*' file-patterns '*(-/):directories *.(pdf|ps|dvi)'
