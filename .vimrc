@@ -55,11 +55,14 @@ match ForbiddenWhitespace /\s\+$/
 " Project Specific Options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" LDR360 wants four spaces instead of a tab
+autocmd BufNewFile,BufRead */ldr360/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
+
 " The Las Vegas Reconstruction Toolkit wants four spaces instead of a tab
 autocmd BufNewFile,BufRead */las-vegas-reconstruction/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
 
-" Opencast Matterhorn wants two spaces for each tab
-autocmd BufNewFile,BufRead */*matterhorn*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab tags=/home/lars/dev/opencast-matterhorn/tags
+" Matterhorn wants two spaces for each tab and a textwidth of 120 columns
+autocmd BufNewFile,BufRead */*matterhorn*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab textwidth=120
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
