@@ -61,8 +61,8 @@ autocmd BufNewFile,BufRead */ldr360/* setlocal tabstop=4 shiftwidth=4 softtabsto
 " The Las Vegas Reconstruction Toolkit wants four spaces instead of a tab
 autocmd BufNewFile,BufRead */las-vegas-reconstruction/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
 
-" Matterhorn wants two spaces for each tab and a textwidth of 120 columns
-autocmd BufNewFile,BufRead */*matterhorn*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab textwidth=120
+" Opencast wants two spaces for each tab and a textwidth of 120 columns
+autocmd BufNewFile,BufRead */*opencast-matterhorn*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab textwidth=120
 
 " Use four spaces for each tab
 autocmd BufNewFile,BufRead */pyCA/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab textwidth=78
@@ -195,6 +195,10 @@ function! ToggleSyntax()
 		syntax on
 	endtry
 endfunction
+
+" Make sure that files with .md file extension are interpreted as markdown not
+" as modula2
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown background=dark
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
