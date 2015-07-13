@@ -64,6 +64,9 @@ autocmd BufNewFile,BufRead */las-vegas-reconstruction/* setlocal tabstop=4 shift
 " Matterhorn wants two spaces for each tab and a textwidth of 120 columns
 autocmd BufNewFile,BufRead */*matterhorn*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab textwidth=120
 
+" Use four spaces for each tab
+autocmd BufNewFile,BufRead */pyCA/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab textwidth=78
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bracket Matching
