@@ -105,7 +105,9 @@ vcs_info_wrapper() {
     echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
   fi
 }
-RPROMPT=$'$(vcs_info_wrapper)'
+
+PROMPT='[%F{green}%n@%m%f]%(5c,.../%1~,%~)%# '
+RPROMPT=$'$(vcs_info_wrapper)'[%F{yellow}%?%f]
 
 
 echo -e "Hi \033[1m${USER}\033[0m"
