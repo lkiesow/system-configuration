@@ -55,6 +55,11 @@ match ForbiddenWhitespace /\s\+$/
 " Project Specific Options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Enable modelines to specify per file settings at the top of a given file
+" Example:
+"   vim: et:ts=4:sw=4:sts=4
+set modeline
+
 " LDR360 wants four spaces instead of a tab
 autocmd BufNewFile,BufRead */ldr360/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
 
