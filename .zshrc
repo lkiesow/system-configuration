@@ -3,6 +3,9 @@ export EDITOR=vim
 type vimx &> /dev/null && export EDITOR=vimx
 export BROWSER=surf
 
+# We always have a visual terminal supporting colors
+export TERM=xterm-256color
+
 # But still use emacs-style zsh bindings
 bindkey -e
 
