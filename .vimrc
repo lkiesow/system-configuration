@@ -103,10 +103,8 @@ nmap <silent> ;;t :TlistUpdate<CR>
 " RPM Build Related Functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if &ft == "spec" 
-	" Map ;l to the insertion of a log entry
-	nmap <silent>  ;l :r !echo "* $(date +'\%a \%b \%e \%Y') Lars Kiesow <lkiesow@uos.de> - $(sed -n 's/Version:[ \t]*//p' %)-$(sed -n 's/^Release:[ \t]*\(.*\)\%.*/\1/p' %)"o<ESC>O- 
-endif
+" Format to use for RPM Spec changelog (generated with \c)
+let g:spec_chglog_format = '%a %b %d %Y Lars Kiesow <lkiesow@uos.de>'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
