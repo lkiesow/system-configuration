@@ -239,7 +239,7 @@ endif
 " Special configuration from git repository root
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if exists("gitcfgloaded")
+if exists("gitcfgloaded") == 0
 	let gitrootcmd = "echo -n $(git rev-parse --show-toplevel)"
 	let gitpath = system("cd $(dirname " . bufname("%") . "); " . gitrootcmd)
 	if v:shell_error == 0
