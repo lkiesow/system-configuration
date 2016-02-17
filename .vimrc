@@ -64,7 +64,7 @@ set modeline
 autocmd BufNewFile,BufRead */ldr360/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
 
 " Opencast wants two spaces for each tab and a textwidth of 120 columns
-autocmd BufNewFile,BufRead */opencast/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab textwidth=120 colorcolumn=121
+"autocmd BufNewFile,BufRead */*opencast*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab textwidth=120 colorcolumn=121
 
 " Use four spaces for each tab
 autocmd BufNewFile,BufRead */pyCA/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab textwidth=78
@@ -232,6 +232,22 @@ let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 if &diff
 	set background=dark
 	syn off
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Special configuration from git repository root
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if exists("gitcfgloaded")
+	let gitrootcmd = "echo -n $(git rev-parse --show-toplevel)"
+	let gitpath = system("cd $(dirname " . bufname("%") . "); " . gitrootcmd)
+	if v:shell_error == 0
+		if filereadable(gitpath . "/.vimrc")
+			let gitcfgloaded = 1
+			exec "source " . gitpath . "/.vimrc"
+		endif
+	endif
 endif
 
 
