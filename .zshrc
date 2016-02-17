@@ -61,6 +61,11 @@ type vimx &> /dev/null && alias vimx="TERM=xterm vimx"
 alias excuse='telnet bofh.jeffballard.us 666 2&> /dev/null | grep "^Your excuse is:"'
 alias cal='cal -m'
 
+audiobook() {
+	ffmpeg -i $1 -map 0:a -c:a libmp3lame -ac 1 -b:a 96k $2;
+}
+
+
 # colored grep by default
 alias grep='grep --color'
 alias egrep='egrep --color'
