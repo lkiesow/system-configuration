@@ -63,11 +63,8 @@ set modeline
 " LDR360 wants four spaces instead of a tab
 autocmd BufNewFile,BufRead */ldr360/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
 
-" The Las Vegas Reconstruction Toolkit wants four spaces instead of a tab
-autocmd BufNewFile,BufRead */las-vegas-reconstruction/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
-
 " Opencast wants two spaces for each tab and a textwidth of 120 columns
-autocmd BufNewFile,BufRead */*opencast*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab textwidth=120 colorcolumn=121
+autocmd BufNewFile,BufRead */opencast/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab textwidth=120 colorcolumn=121
 
 " Use four spaces for each tab
 autocmd BufNewFile,BufRead */pyCA/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab textwidth=78
@@ -147,7 +144,7 @@ if &ft == "tex" || &ft == "plaintex"
 	let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
 	let tlist_make_settings  = 'make;m:makros;t:targets'
 
-endif 
+endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
