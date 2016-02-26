@@ -210,7 +210,7 @@ nnoremap <F3> :set spell! spell?<CR>
 
 " Specify colors for spell checking
 highlight clear SpellBad
-highlight SpellBad term=standout ctermfg=202 term=underline cterm=underline ctermbg=8
+highlight SpellBad term=standout ctermfg=202 term=underline cterm=underline
 highlight clear SpellCap
 highlight SpellCap term=underline cterm=underline ctermfg=202
 highlight clear SpellRare
