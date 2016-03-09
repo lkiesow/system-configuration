@@ -84,6 +84,8 @@ zstyle ':completion:*:(gvim|vim):*' file-sort access
 compctl -k "(check-update clean distro-sync downgrade erase group help history
 	info install list makecache provides reinstall repolist repository-packages
 	search updateinfo upgrade upgrade-to)" dnf
+# and for mkdocs
+compctl -k "(build gh-deploy json new serve)" mkdocs
 
 # evince completion
 zstyle ':completion:*:evince:*' file-patterns '*(-/):directories *.(pdf|ps|dvi)'
