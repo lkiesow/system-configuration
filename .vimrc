@@ -55,10 +55,23 @@ match ForbiddenWhitespace /\s\+$/
 " Project Specific Options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function! Indent(tabsize, textwidth)
+	execute "setlocal tabstop=".a:tabsize
+	execute 'setlocal shiftwidth='.a:tabsize
+	execute 'setlocal softtabstop='.a:tabsize
+	execute 'setlocal textwidth='.a:textwidth
+	execute 'setlocal colorcolumn='.(a:textwidth + 1)
+	execute 'setlocal smarttab'
+	execute 'setlocal expandtab'
+endfunction
+
 " Enable modelines to specify per file settings at the top of a given file
 " Example:
 "   vim: et:ts=4:sw=4:sts=4
 set modeline
+
+autocmd BufNewFile,BufRead *.py   :call Indent(4, 80)
+autocmd BufNewFile,BufRead *.scad :call Indent(4, 80)
 
 " LDR360 wants four spaces instead of a tab
 autocmd BufNewFile,BufRead */ldr360/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
