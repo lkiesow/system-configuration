@@ -112,7 +112,9 @@ vcs_info_wrapper() {
   fi
 }
 
-PROMPT='[%F{green}%n@%m%f]%(5c,.../%1~,%~)%# '
+PROMPT_COLOR=green
+[ -f ~/.zsh_color ] && PROMPT_COLOR=$(cat ~/.zsh_color)
+PROMPT="[%F{${PROMPT_COLOR}}%n@%m%f]%(5c,.../%1~,%~)%# "
 RPROMPT=$'$(vcs_info_wrapper)'[%F{yellow}%?%f]
 
 
