@@ -70,7 +70,7 @@ endfunction
 "   vim: et:ts=4:sw=4:sts=4
 set modeline
 
-autocmd BufNewFile,BufRead *.py   :call Indent(4, 80)
+autocmd BufNewFile,BufRead *.py   :call Indent(4, 79)
 autocmd BufNewFile,BufRead *.scad :call Indent(4, 80)
 
 " LDR360 wants four spaces instead of a tab
