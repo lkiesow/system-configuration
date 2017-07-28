@@ -17,6 +17,7 @@ docker-zsh-completion
 easytag
 eog
 evince
+ffmpeg
 firefox
 fuse-sshfs
 gimp
@@ -64,7 +65,7 @@ tesseract
 tesseract-langpack-deu
 tesseract-langpack-deu
 v4l-utils
-vim-enhanced
+vim-X11
 vlc
 w3m
 wget
