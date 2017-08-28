@@ -20,6 +20,8 @@ set term=xterm-256color " | Vim may always use 256 colors as all modern
 set t_Co=256            " | terminals should support this. But it may be
                         " | falsely detected because of screen or tmux.
 
+set background=dark
+
 highlight Pmenu ctermbg=234 ctermfg=220
 highlight PmenuSel ctermfg=11 ctermbg=0
 
