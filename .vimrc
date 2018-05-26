@@ -98,7 +98,7 @@ set matchtime=3
 " Insert Lorem Ipsum
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-command -nargs=1 Lorem r !curl -s 'http://loripsum.net/generate.php?p=<args>&l=long' | sed 's/<[^>]*> *//g'
+command -nargs=1 Lorem r !curl -L -s 'http://loripsum.net/generate.php?p=<args>&l=long' | sed 's/<[^>]*> *//g'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TagList Support
