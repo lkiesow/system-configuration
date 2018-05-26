@@ -1,6 +1,5 @@
 export EDITOR=vim
 type vimx &> /dev/null && export EDITOR=vimx
-export BROWSER=surf
 export TEXMFHOME=~/.texmf
 
 # We always have a visual terminal supporting colors
