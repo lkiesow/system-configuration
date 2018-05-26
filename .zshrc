@@ -48,22 +48,15 @@ export SAVEHIST=100000
 export USER=$USERNAME
 export HOSTNAME=$HOST
 
-alias :q='exit'
 alias ls='ls --color=auto'
 alias ll='ls -h -l --color=auto'
 alias la='ls -h -l -a --color=auto'
-alias cls='clear'
 alias cd..='cd ..'
 alias vi="TERM=xterm ${EDITOR}"
 alias vim="TERM=xterm ${EDITOR}"
 type vimx &> /dev/null && alias vimx="TERM=xterm vimx"
 alias excuse='telnet bofh.jeffballard.us 666 2&> /dev/null | grep "^Your excuse is:"'
 alias cal='cal -m'
-
-audiobook() {
-	ffmpeg -i "$1" -map 0:a -c:a libmp3lame -ac 1 -b:a 96k "$2";
-}
-
 
 # colored grep by default
 alias grep='grep --color'
@@ -76,18 +69,14 @@ compinit
 zstyle ':completion:*' menu select
 
 # completion for vim
-zstyle ':completion:*:(gvim|vim):*' ignored-patterns '*.(pdf|jpg|png|bmp|ogg|mp3|avi|flv|mkv|rar|zip)'
+zstyle ':completion:*:(gvim|vim):*' ignored-patterns '*.(pdf|jpg|png|bmp|ogg|mp3|mp4|avi|flv|mkv|rar|zip)'
 zstyle ':completion:*:(gvim|vim):*' file-sort access
 
-# simple stupid completion for dnf
-compctl -k "(check-update clean distro-sync downgrade erase group help history
-	info install list makecache provides reinstall repolist repository-packages
-	search updateinfo upgrade upgrade-to)" dnf
-# and for mkdocs
+# simple stupid completion for mkdocs
 compctl -k "(build gh-deploy json new serve)" mkdocs
 
-# evince completion
-zstyle ':completion:*:evince:*' file-patterns '*(-/):directories *.(pdf|ps|dvi)'
+# xreader completion
+zstyle ':completion:*:xreader:*' file-patterns '*(-/):directories *.(pdf|ps|dvi)'
 
 rehash
 
