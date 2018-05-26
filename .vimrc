@@ -147,7 +147,7 @@ if &ft == "tex" || &ft == "plaintex"
 	nmap <silent>  ;l :exec '!pdflatex -shell-escape "'.TexProject().'"'<CR>
 
 	" Map ;;l to the execution of pdflatex and open the resulting pdf.
-	nmap <silent> ;;l :exec '!pdflatex -shell-escape "'.TexProject().'" && xdg-open "'.substitute(TexProject(),"\.tex$",".pdf",1).'"'<CR>
+	nmap <silent> ;;l :exec '!pdflatex -shell-escape "'.TexProject().'" && xdg-open "'.substitute(TexProject(),"\.tex$",".pdf",1).'" &> /dev/null'<CR>
 
 	" Build environment construct based on the word under the cursor
 	nmap <silent> ;;e b"zdei\begin{}<ESC>"zPo\end{}<ESC>"zPO<TAB>
