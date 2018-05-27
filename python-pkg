@@ -1,0 +1,14 @@
+python2-configobj.noarch
+python2-dateutil.noarch
+python2-flake8.noarch
+python2-flask.noarch
+python2-passlib.noarch
+python2-pycurl.x86_64
+python2-sqlalchemy.x86_64
+python3-configobj.noarch
+python3-dateutil.noarch
+python3-flake8.noarch
+python3-flask.noarch
+python3-passlib.noarch
+python3-pycurl.x86_64
+python3-sqlalchemy.x86_64
