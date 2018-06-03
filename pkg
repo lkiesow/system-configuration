@@ -51,3 +51,5 @@ v4l-utils
 vim-X11
 youtube-dl
 zsh
+pwgen
+ledger
