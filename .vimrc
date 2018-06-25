@@ -80,6 +80,7 @@ autocmd BufNewFile,BufRead */ldr360/* setlocal tabstop=4 shiftwidth=4 softtabsto
 
 " Opencast wants two spaces for each tab and a textwidth of 120 columns
 "autocmd BufNewFile,BufRead */*opencast*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab textwidth=120 colorcolumn=121
+autocmd BufNewFile,BufRead */*opencast*/*pom.xml setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab textwidth=120 colorcolumn=121
 
 " Use four spaces for each tab
 autocmd BufNewFile,BufRead */pyCA/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab textwidth=78
