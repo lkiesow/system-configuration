@@ -1,10 +1,14 @@
+ImageMagick
+ShellCheck
 aspell
 aspell-de
 aspell-en
 audacity-freeworld
 claws-mail
 claws-mail-plugins
+copr-cli
 darktable
+dash
 easytag
 exfat-utils
 ffmpeg
@@ -12,6 +16,7 @@ fuse-exfat
 fuse-sshfs
 gimp
 git
+gnumeric
 google-chrome-stable
 gopass
 gparted
@@ -23,11 +28,11 @@ hunspell-de
 hunspell-en
 hunspell-en-GB
 hunspell-en-US
-ImageMagick
 inkscape
 intellij-idea-community
 jq
 klavaro
+ledger
 libreoffice
 libreoffice-draw
 man-pages
@@ -39,7 +44,10 @@ mkdocs
 mpv
 ncftp
 nload
+npm
 pavucontrol
+pwgen
+qrencode
 scantailor
 simple-scan
 synfig
@@ -51,5 +59,3 @@ v4l-utils
 vim-X11
 youtube-dl
 zsh
-pwgen
-ledger
