@@ -1,4 +1,5 @@
 python2-configobj.noarch
+python2-coverage
 python2-dateutil.noarch
 python2-flake8.noarch
 python2-flask.noarch
@@ -8,6 +9,7 @@ python2-requests.noarch
 python2-sphinx.noarch
 python2-sqlalchemy.x86_64
 python3-configobj.noarch
+python3-coverage
 python3-dateutil.noarch
 python3-flake8.noarch
 python3-flask.noarch
