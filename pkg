@@ -45,6 +45,8 @@ mkdocs
 mpv
 ncftp
 nload
+nmap
+nmap-ncat
 npm
 pavucontrol
 pwgen
