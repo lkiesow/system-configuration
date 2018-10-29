@@ -18,3 +18,4 @@ python3-pycurl.x86_64
 python3-requests.noarch
 python3-sphinx.noarch
 python3-sqlalchemy.x86_64
+python3-virtualenv.noarch
