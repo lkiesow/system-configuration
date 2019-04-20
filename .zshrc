@@ -1,6 +1,7 @@
 export EDITOR=vim
 type vimx &> /dev/null && export EDITOR=vimx
 export TEXMFHOME=~/.texmf
+export GOPATH=~/dev/go
 
 # We always have a visual terminal supporting colors
 export TERM=screen-256color
