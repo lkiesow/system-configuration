@@ -11,3 +11,7 @@
 	default = simple
 [gpg]
 	program = /usr/bin/gpg2
+[sendemail]
+	smtpencryption = tls
+	smtpserver = smtp-auth.uni-osnabrueck.de
+	smtpuser = lkiesow
