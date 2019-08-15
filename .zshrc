@@ -44,8 +44,8 @@ bindkey "^[[A"   up-line-or-search
 bindkey "^[[B" down-line-or-search
 
 # Some environment variables
-export HISTSIZE=100000
-export SAVEHIST=100000
+export HISTSIZE=1000000
+export SAVEHIST=1000000
 export USER=$USERNAME
 export HOSTNAME=$HOST
 
