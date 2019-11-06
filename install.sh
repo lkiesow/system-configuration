@@ -1,12 +1,15 @@
 #!/bin/bash
 
-CFGPATH=`dirname $0`
+set -o nounset
 
-pushd ~ > /dev/null
-ln -s $CFGPATH/.zshrc
-ln -s $CFGPATH/.vim
-ln -s $CFGPATH/.vimrc
-ln -s $CFGPATH/.colors
-ln -s $CFGPATH/.ctags
-ln -s $CFGPATH/.gitconfig
-popd > /dev/null
+cd "$(dirname "$0")"
+CFGPATH="$(pwd)"
+
+cd
+set -o xtrace
+
+ln -s "$CFGPATH/.zshrc" .
+ln -s "$CFGPATH/.vim" .
+ln -s "$CFGPATH/.vimrc" .
+ln -s "$CFGPATH/.colors" .
+ln -s "$CFGPATH/.gitconfig" .
