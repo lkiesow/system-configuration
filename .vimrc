@@ -73,6 +73,7 @@ endfunction
 set modeline
 
 autocmd BufNewFile,BufRead *.py   :call Indent(4, 79)
+autocmd BufNewFile,BufRead *.tsx  :call Indent(2, 80)
 autocmd BufNewFile,BufRead *.scad :call Indent(4, 80)
 
 " Opencast wants two spaces for each tab and a textwidth of 120 columns
@@ -82,6 +83,12 @@ autocmd BufNewFile,BufRead */opencast/* :call Indent(2, 120)
 " Use four spaces for each tab
 autocmd BufNewFile,BufRead */pyCA/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab textwidth=78
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Safe settings for gopass
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+au BufNewFile,BufRead */gopass/* setlocal noswapfile nobackup noundofile
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bracket Matching
