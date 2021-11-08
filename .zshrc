@@ -81,31 +81,34 @@ zstyle ':completion:*:xreader:*' file-patterns '*(-/):directories *.(pdf|ps|dvi)
 
 rehash
 
-eval `dircolors ~/.colors`
+if type starship &> /dev/null; then
+	eval "$(starship init zsh)"
+else
+	eval `dircolors ~/.colors`
 
-# Show git and svn branch in shell
-setopt prompt_subst
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' actionformats \
-    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-zstyle ':vcs_info:*' formats       \
-    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+	# Show git and svn branch in shell
+	setopt prompt_subst
+	autoload -Uz vcs_info
+	zstyle ':vcs_info:*' actionformats \
+		 '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+	zstyle ':vcs_info:*' formats       \
+		 '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+	zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 
-zstyle ':vcs_info:*' enable git cvs svn
+	zstyle ':vcs_info:*' enable git cvs svn
 
-# or use pre_cmd, see man zshcontrib
-vcs_info_wrapper() {
-  vcs_info
-  if [ -n "$vcs_info_msg_0_" ]; then
-    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
-  fi
-}
+	# or use pre_cmd, see man zshcontrib
+	vcs_info_wrapper() {
+	  vcs_info
+	  if [ -n "$vcs_info_msg_0_" ]; then
+		 echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+	  fi
+	}
 
-PROMPT_COLOR=green
-[ -f ~/.zsh_color ] && PROMPT_COLOR=$(cat ~/.zsh_color)
-PROMPT="[%F{${PROMPT_COLOR}}%n@%m%f]%(5c,.../%1~,%~)%# "
-RPROMPT=$'$(vcs_info_wrapper)'[%F{yellow}%?%f]
-
+	PROMPT_COLOR=green
+	[ -f ~/.zsh_color ] && PROMPT_COLOR=$(cat ~/.zsh_color)
+	PROMPT="[%F{${PROMPT_COLOR}}%n@%m%f]%(5c,.../%1~,%~)%# "
+	RPROMPT=$'$(vcs_info_wrapper)'[%F{yellow}%?%f]
+fi
 
 echo -e "Hi \033[1m${USER}\033[0m"
