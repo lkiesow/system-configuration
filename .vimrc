@@ -10,7 +10,9 @@ set ruler         " Show line and column number of cursor position
 set linebreak     " break at word boundaries rather that in words
 set showmode      " Show a message about the current mode
 set mouse=a       " Enable Mouse
-set backspace=indent,eol,start " Backspace to delete newline
+set backspace=indent,eol,start,nostop
+                  " Backspace to delete newline
+set hlsearch      " Highlight search results
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
