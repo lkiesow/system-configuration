@@ -78,14 +78,23 @@ set modeline
 autocmd BufNewFile,BufRead *.py   :call Indent(4, 79)
 autocmd BufNewFile,BufRead *.tsx  :call Indent(2, 80)
 autocmd BufNewFile,BufRead *.scad :call Indent(4, 80)
+autocmd BufNewFile,BufRead *.yml  :call Indent(2, 80)
+autocmd BufNewFile,BufRead *.yaml :call Indent(2, 80)
 
 " Opencast wants two spaces for each tab and a textwidth of 120 columns
-"autocmd BufNewFile,BufRead */*opencast*/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab textwidth=120 colorcolumn=121
 autocmd BufNewFile,BufRead */opencast/* :call Indent(2, 120)
+autocmd BufNewFile,BufRead */opencast-editor/* :call Indent(2, 120)
 
 " Use four spaces for each tab
 autocmd BufNewFile,BufRead */pyCA/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab textwidth=78
 
+" Use four spaces for each tab
+autocmd BufNewFile,BufRead */dev/paella/* setlocal tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab textwidth=120
+
+" Use two spaces and don't fix newline at the end of a file
+autocmd BufNewFile,BufRead */dev/audiobookshelf/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab nofixendofline
+autocmd BufNewFile,BufRead */dev/audiobookshelf-slate/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab nofixendofline
+autocmd BufNewFile,BufRead */dev/audiobookshelf-app/* setlocal tabstop=2 shiftwidth=2 softtabstop=2 smarttab expandtab nofixendofline
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Safe settings for gopass
