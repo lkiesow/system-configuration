@@ -15,3 +15,5 @@
 	smtpencryption = tls
 	smtpserver = smtp-auth.uni-osnabrueck.de
 	smtpuser = lkiesow
+[pull]
+	ff = only
