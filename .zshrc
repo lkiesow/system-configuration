@@ -79,6 +79,15 @@ zstyle ':completion:*:(gvim|vim):*' file-sort access
 # simple stupid completion for mkdocs
 compctl -k "(build gh-deploy json new serve)" mkdocs
 
+# completion for proteuscmd
+eval "$(_PROTEUSCMD_COMPLETE=zsh_source proteuscmd)"
+
+# completion for watson
+eval "$(_WATSON_COMPLETE=zsh_source watson)"
+
+# completion for kubectl
+#source <(kubectl completion zsh)
+
 # xreader completion
 zstyle ':completion:*:xreader:*' file-patterns '*(-/):directories *.(pdf|ps|dvi)'
 
