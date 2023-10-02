@@ -1,19 +1,40 @@
 [user]
 	name = Lars Kiesow
 	email = lkiesow@uos.de
+	signingkey = 237D94C6
 
 [pager]
 	diff =
 
+[github]
+	user = lkiesow
+	token = fb93e33eb0f2ba3f1f986e416e8e685c
+
 [color]
 	ui = true
+
 [push]
 	default = simple
+
 [gpg]
 	program = /usr/bin/gpg2
+
 [sendemail]
 	smtpencryption = tls
 	smtpserver = smtp-auth.uni-osnabrueck.de
 	smtpuser = lkiesow
+
 [pull]
 	ff = only
+
+[init]
+	defaultBranch = main
+
+[advice]
+	detachedHead = false
+
+[difftool]
+	prompt = false
+
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
