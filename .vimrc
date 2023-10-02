@@ -75,11 +75,13 @@ endfunction
 "   vim: et:ts=4:sw=4:sts=4
 set modeline
 
-autocmd BufNewFile,BufRead *.py   :call Indent(4, 79)
-autocmd BufNewFile,BufRead *.tsx  :call Indent(2, 80)
-autocmd BufNewFile,BufRead *.scad :call Indent(4, 80)
-autocmd BufNewFile,BufRead *.yml  :call Indent(2, 80)
-autocmd BufNewFile,BufRead *.yaml :call Indent(2, 80)
+autocmd BufNewFile,BufRead *.py     :call Indent(4, 79)
+autocmd BufNewFile,BufRead *.tsx    :call Indent(2, 80)
+autocmd BufNewFile,BufRead *.scad   :call Indent(4, 80)
+autocmd BufNewFile,BufRead *.yml    :call Indent(2, 80)
+autocmd BufNewFile,BufRead *.yaml   :call Indent(2, 80)
+autocmd BufNewFile,BufRead *.yml.j2 :call Indent(2, 80)
+autocmd BufNewFile,BufRead *.yml.j2 :setlocal syn=yaml
 
 " Opencast wants two spaces for each tab and a textwidth of 120 columns
 autocmd BufNewFile,BufRead */opencast/* :call Indent(2, 120)
@@ -289,3 +291,11 @@ endif
 
 runtime bundle/vim-pathogen/pathogen.vim
 execute pathogen#infect()
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Golang Development
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" format with goimports instead of gofmt
+let g:go_fmt_command = "goimports"
